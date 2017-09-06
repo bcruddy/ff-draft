@@ -24,7 +24,7 @@ window.ffd = {
             <td>${ADP}</td>
             <td style="${style}">${vsADP}</td>
             <td>
-                <a href="#${index}" onclick="ffd.playerPicked('${index}')">Picked</a> | <a href="#${index}" onclick="ffd.draftPlayer('${index}')">Draft</a>
+                <a href="#" onclick="ffd.playerPicked('${index}')">Picked</a> | <a href="#${index}" onclick="ffd.draftPlayer('${index}')">Draft</a>
             </td>
         </tr>`;
     },
