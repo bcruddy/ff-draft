@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+        body {
+            font-size: 14px;
+        }
+    </style>
+<head>
+<body>
+    <header class="jumbotron">
+        <div class="container">
+            <h3>2017 FantasyPros Concesus Rankings</h3>
+        </div>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <main class="col-md-8">
+                <table class="table table-striped">
+                    <thead>
+                        <tr style="text-align: left;">
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Team</th>
+                            <th>Pos</th>
+                            <th>Bye</th>
+                            <th>Avg</th>
+                            <th>ADP</th>
+                            <th>vs ADP</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="list"></tbody>
+                </table>
+            </main>
+            <aside class="col-md-4">
+                <table class="table">
+                    <thead>
+                        <tr style="text-align: left;">
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Team</th>
+                            <th>Pos</th>
+                            <th>Bye</th>
+                        </tr>
+                    </thead>
+                    <tbody id="drafted-players"></tbody>
+                </table>
+            </aside>
+        </div>
+    </div>
+    <footer class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="https://www.fantasypros.com/nfl/rankings/consensus-cheatsheets.php" target="_blank">
+                            FFP Data
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="rankings-standard.js"></script>
+    <script src="scripts.js"></script>
+    <script>
+        window.onload = ffd.init.bind(ffd);
+    </script>
+</body>
+</html>
