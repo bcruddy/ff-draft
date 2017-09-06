@@ -11,12 +11,13 @@
 <body>
     <header class="jumbotron">
         <div class="container">
-            <h3>2017 FantasyPros Concesus Rankings</h3>
+            <h3>2017 FantasyPros Concensus Rankings Draft Tracker</h3>
+            <p>Pick: <span id="current-round">1</span> / <span id="current-pick">1</span></p>
         </div>
     </header>
     <div class="container-fluid">
         <div class="row">
-            <main class="col-md-8">
+            <main class="col-md-7">
                 <table class="table table-striped">
                     <thead>
                         <tr style="text-align: left;">
@@ -29,16 +30,16 @@
                             <th>ADP</th>
                             <th>vs ADP</th>
                             <th></th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody id="list"></tbody>
                 </table>
             </main>
-            <aside class="col-md-4">
+            <aside class="col-md-5">
                 <table class="table">
                     <thead>
                         <tr style="text-align: left;">
+                            <th>Pick</th>
                             <th>Rank</th>
                             <th>Name</th>
                             <th>Team</th>
@@ -47,6 +48,19 @@
                         </tr>
                     </thead>
                     <tbody id="drafted-players"></tbody>
+                </table>
+                <table class="table">
+                    <thead>
+                        <tr style="text-align: left;">
+                            <th>Pick</th>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Team</th>
+                            <th>Pos</th>
+                            <th>Bye</th>
+                        </tr>
+                    </thead>
+                    <tbody id="previous-picks"></tbody>
                 </table>
             </aside>
         </div>

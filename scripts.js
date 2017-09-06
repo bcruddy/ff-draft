@@ -1,4 +1,7 @@
 window.ffd = {
+    currentPick: 1,
+    currentRound: 1,
+
     init () {
         const list = document.getElementById('list');
         const html = window.rankings.map(this.buildRow.bind(this)).join('');
@@ -7,6 +10,7 @@ window.ffd = {
     },
 
     buildRow (item, index) {
+        index++;
         const {Rank, Name, Team, Pos, Bye, Avg, ADP, 'vs. ADP': vsADP} = item;
         const style = this.styleRow(vsADP);
 
@@ -20,10 +24,7 @@ window.ffd = {
             <td>${ADP}</td>
             <td style="${style}">${vsADP}</td>
             <td>
-                <a href="#${index}" onclick="ffd.removeRow('${index}')">Remove</a>
-            </td>
-            <td>
-                <a href="#${index}" onclick="ffd.draftPlayer('${index}')">Draft</a>
+                <a href="#${index}" onclick="ffd.playerPicked('${index}')">Picked</a> | <a href="#${index}" onclick="ffd.draftPlayer('${index}')">Draft</a>
             </td>
         </tr>`;
     },
@@ -50,6 +51,19 @@ window.ffd = {
         if (row) {
             row.parentNode.removeChild(row);
         }
+
+        this.updatePick();
+    },
+
+    playerPicked (index) {
+        const pickedList = document.getElementById('previous-picks');
+        const row = document.querySelector(`[data-row="${index}"]`);
+        const clone = row.cloneNode(true);
+
+        this.cleanupPick(clone);
+
+        pickedList.prepend(clone);
+        this.removeRow(index);
     },
 
     draftPlayer (index) {
@@ -57,19 +71,42 @@ window.ffd = {
         const row = document.querySelector(`[data-row="${index}"]`);
         const clone = row.cloneNode(true);
 
+        this.cleanupPick(clone);
+
+        draftedList.prepend(clone);
+        this.removeRow(index);
+    },
+
+    cleanupPick (clone) {
         const toRemove = [
             clone.children[clone.children.length - 1],
             clone.children[clone.children.length - 2],
             clone.children[clone.children.length - 3],
-            clone.children[clone.children.length - 4],
-            clone.children[clone.children.length - 5]
+            clone.children[clone.children.length - 4]
         ];
 
         toRemove.forEach(node => {
             node.parentNode.removeChild(node);
         });
 
-        draftedList.appendChild(clone);
-        this.removeRow(index);
+        const td = document.createElement('td');
+        td.textContent = [this.currentRound, this.currentPick].join(' - ');
+
+        clone.prepend(td);
+    },
+
+    updatePick () {
+        if (this.currentPick === 12) {
+            this.currentPick = 1;
+            this.currentRound++;
+        } else {
+            this.currentPick++;
+        }
+
+        const pickEl = document.getElementById('current-pick');
+        const roundEl = document.getElementById('current-round');
+
+        pickEl.textContent = this.currentPick;
+        roundEl.textContent = this.currentRound;
     }
 };
